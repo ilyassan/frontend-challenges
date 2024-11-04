@@ -221,7 +221,7 @@ picture {
   @media screen and (min-width: 992px) {
     .header {
       /* Indice 34 : Changez le fond pour les écrans plus larges avec une autre image. Utilisez background avec une nouvelle URL. */
-      background: linear-gradient(to bottom, rgb(0, 0, 0, .5), rgb(0, 0, 0, .5)), url("../images/desktop/image-hero.jpg");
+      background-image: linear-gradient(to bottom, rgb(0, 0, 0, .5), rgb(0, 0, 0, .5)), url("../images/desktop/image-hero.jpg");
       /* Indice 35 : Assurez-vous que l'image couvre le conteneur. */
       width: 100%;
     }
@@ -388,11 +388,11 @@ picture {
         
         /* Indice 77 : Affichez la liste en utilisant le modèle de grille CSS. 
            Propriété : display; Valeur : grid; */
-           display: grid;
+           display: flex;
         
         /* Indice 78 : Créez une grille avec cinq colonnes, où chaque colonne a une largeur maximale définie par le contenu. 
            Propriété : grid-template-columns; Valeur : repeat(5, max-content); */
-           grid-template-columns: repeat(5, max-content);
+           flex-direction: row;
         
         /* Indice 79 : Ajoutez un espacement entre les colonnes de la grille. 
            Propriété : column-gap; Valeur : 2.05rem; */
@@ -527,35 +527,20 @@ picture {
   }
 }
 
-@media screen and (min-width: 768px) {
-    .creations__content {
-      /* Indice 85 : Affichez le contenu en mode grille. 
-         Propriété : display; Valeur : grid; */
-         display: grid;
-      
-      /* Indice 86 : Créez deux colonnes avec des largeurs égales. 
-         Propriété : grid-template-columns; Valeur : repeat(2, 1fr); */
-         grid-template-columns: repeat(2, 1fr);
-      
-      /* Indice 87 : Définissez deux lignes pour la grille. 
-         Propriété : grid-template-rows; Valeur : 3.2rem 1fr; */
-         grid-template-rows: 3.2rem 1fr;
-      
-      /* Indice 88 : Attribuez des zones de grille pour l'organisation. 
-         Propriété : grid-template-areas; Valeur : "title cta" "gallery gallery"; */
-         grid-template-areas: "title cta" "gallery gallery";
-      
-      /* Indice 89 : Ajoutez un espacement entre les lignes de la grille. 
-         Propriété : row-gap; Valeur : 3.2rem; */
-         row-gap: 3.2rem;
-    }
-  }
+.creations__content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 3.2rem;
+}
 
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: 768px) {
     .creations__content {
       /* Indice 90 : Augmentez l'espacement entre les lignes pour les écrans plus larges. 
          Propriété : row-gap; Valeur : 5.33rem; */
          row-gap: 5.33rem;
+          justify-content: space-between;
     }
   }
   
@@ -573,7 +558,6 @@ picture {
     .creations .creations__title {
       /* Indice 93 : Attribuez une zone de grille pour le titre. 
          Propriété : grid-area; Valeur : title; */
-         grid-area: title;
       
       /* Indice 94 : Justifiez le titre à gauche. 
          Propriété : justify-self; Valeur : start; */
@@ -600,31 +584,32 @@ picture {
   .creations__gallery {
     /* Indice 98 : Attribuez une zone de grille pour la galerie. 
        Propriété : grid-area; Valeur : gallery; */
-       grid-area: gallery;
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: space-between;
+       row-gap: .85rem;
+
+       & > a {
+          flex-basis: 100%;
+       }
   }
   
 
   @media screen and (min-width: 768px) {
     .creations__gallery {
-      /* Indice 99 : Affichez la galerie en mode grille. 
-         Propriété : display; Valeur : grid; */
-         display: grid;
-      
-      /* Indice 100 : Créez deux colonnes avec des largeurs égales. 
-         Propriété : grid-template-columns; Valeur : repeat(2, 1fr); */
-         grid-template-columns: repeat(2, 1fr);
-      
-      /* Indice 101 : Ajoutez un espacement entre les éléments de la galerie. 
-         Propriété : gap; Valeur : 2rem; */
-         gap: 2rem;
+      order: 1;
+
+      & > a {
+        flex-basis: calc(50% - (2rem / 2));
+     }
     }
   }
 
   @media screen and (min-width: 1200px) {
     .creations__gallery {
-      /* Indice 102 : Augmentez le nombre de colonnes dans la galerie. 
-         Propriété : grid-template-columns; Valeur : repeat(4, 1fr); */
-         grid-template-columns: repeat(4, 1fr);
+        & > a {
+          flex-basis: calc(25% - (2rem / 4));
+       }
     }
   }
   
@@ -802,7 +787,6 @@ picture {
 .creations__link {
     /* Indice 138 : Alignez le lien dans la grille à la zone désignée cta.
     Propriété : grid-area; Valeur : cta; */ /* Définit la zone de grille où l'élément doit être placé. */
-    grid-area: cta;
 
     /* Indice 139 : Ajoutez un espace au-dessus du lien. 
     Propriété : margin-top; Valeur : 0.67rem; */ /* Crée un espace au-dessus de l'élément pour le séparer des éléments environnants. */
@@ -895,10 +879,8 @@ picture {
 }
 
 .footer__icons-list {
-  grid-area: icons;
   padding-bottom: 1.2rem;
-  display: grid;
-  grid-template-columns: repeat(4, 1.6rem);
+  display: flex;
   column-gap: 1.07rem;
   justify-content: center;
   align-items: center;
@@ -918,7 +900,6 @@ picture {
 
 @media screen and (min-width: 992px) {
   .footer .footer__copyright {
-    grid-area: copyright;
     text-align: right;
     padding-bottom: 0;
   }
