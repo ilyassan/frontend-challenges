@@ -404,7 +404,7 @@ picture {
         
         /* Indice 80 : Alignez les éléments de la grille en bas. 
            Propriété : align-items; Valeur : end; */
-           align-items: flex-end;
+           justify-content: flex-end;
       }      
 }
 
@@ -456,7 +456,7 @@ picture {
 
   .about__content {
     display: grid;
-    text-align: left;
+    text-align: center;
   }
 }
 
@@ -880,6 +880,7 @@ picture {
     display: grid;
     gap: 2.13rem;
     padding: 0;
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 
