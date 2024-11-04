@@ -282,9 +282,11 @@ picture {
 /* Sélecteur pour le menu de navigation de l'en-tête */
 .header__nav {
     /* Indice 48 : Utilisez flexbox pour organiser les éléments en ligne. Utilisez display avec flex. */
-    display: flex;
+    display: grid;
     /* Indice 49 : Utilisez justify-content pour espacer les éléments. */
     justify-content: space-between;
+
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .header__logo,
@@ -293,6 +295,9 @@ picture {
     position: relative;
     /* Indice 51 : Ajoutez un z-index de 100 pour le superposer. */
     z-index: 100;
+
+    display: grid;
+    justify-content: flex-end;
   }
 
   @media screen and (min-width: 992px) {
@@ -325,7 +330,6 @@ picture {
 /* Sélecteur pour la liste de navigation */
 .nav__list {
   /* problem */
-  display: flex; flex-direction: column;
   padding: 7rem 0 0 1rem;
  /* Indice 58 : Positionnez la liste de manière absolue. */
   position: absolute;
@@ -451,7 +455,7 @@ picture {
   }
 
   .about__content {
-    display: flex;
+    display: grid;
     text-align: left;
   }
 }
@@ -873,7 +877,7 @@ picture {
 @media screen and (min-width: 992px) {
   .footer__nav-list {
     grid-area: nav;
-    display: flex;
+    display: grid;
     gap: 2.13rem;
     padding: 0;
   }
